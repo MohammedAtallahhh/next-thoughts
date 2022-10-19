@@ -1,8 +1,36 @@
-import '../styles/globals.css'
-import type { AppProps } from 'next/app'
+import { useEffect, useState } from "react";
+import type { AppProps } from "next/app";
 
-function MyApp({ Component, pageProps }: AppProps) {
-  return <Component {...pageProps} />
-}
+import Navbar from "../components/Navbar";
+import Sidebar from "../components/Sidebar";
 
-export default MyApp
+import "../styles/globals.css";
+
+const MyApp = ({ Component, pageProps }: AppProps) => {
+  const [isSSR, setIsSSR] = useState(true);
+
+  useEffect(() => {
+    setIsSSR(false);
+  }, []);
+
+  return isSSR ? null : (
+    <>
+      <div className="app">
+        {/*===== Navbar ==========*/}
+        <Navbar />
+
+        <div className="flex gap-6 md:gap-20">
+          {/* =========== Sidebar ========= */}
+          <Sidebar />
+
+          {/*============= Main Content ============*/}
+          <main className="content mt-4 flex flex-col gap-10 overflow-auto h-[88vh] flex-1">
+            <Component {...pageProps} />
+          </main>
+        </div>
+      </div>
+    </>
+  );
+};
+
+export default MyApp;
