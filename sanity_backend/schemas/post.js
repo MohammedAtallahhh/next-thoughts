@@ -10,8 +10,8 @@ export default {
     },
     {
       name: "image",
+      type: "image",
       title: "Image",
-      type: "file",
       options: {
         hotspot: true,
       },

@@ -1,6 +1,5 @@
 import Link from "next/link";
 import { useState } from "react";
-import GoogleLogin from "react-google-login";
 
 // components
 import Discover from "./Discover";
@@ -12,12 +11,12 @@ import { useRouter } from "next/router";
 import SidebarFooter from "./SidebarFooter";
 
 const sidebarClasses = {
-  sidebar: "h-[92vh] overflow-hidden lg:hover:overflow-auto",
+  sidebar:
+    "h-[92vh] overflow-hidden lg:hover:overflow-auto lg:border-r-2 lg:border-gray-200",
 
   toggleBtn: "block lg:hidden p-1 text-2xl",
 
-  categoryList:
-    "w-20 lg:w-[350px] flex flex-col justify-start mb-10 border-r-2 border-gray-100 lg:border-0 p-3",
+  categoryList: "w-20 lg:w-[350px] flex flex-col justify-start mb-10 p-3",
 
   homeCategory: "border-gray-200 lg:border-b-2 lg:pb-4",
   homeItem:
@@ -25,7 +24,7 @@ const sidebarClasses = {
   homeItemActive:
     "flex justify-center items-center gap-3 p-3 font-semibold text-[#F51997] rounded cursor-pointer hover:bg-primary lg:justify-start",
 
-  login: "px-2 py-4 hidden lg:block",
+  login: "px-2 py-4 border-b-2 border-gray-200 hidden lg:block",
   loginBtn:
     "font-semibold text-lg bg-white text-[#F51997] border-[1px] border-[#F51997] px-6 py-3 rounded-md outline-none w-full mt-3 cursor-pointer transition-all hover:text-white hover:bg-[#F51997]",
 };
@@ -36,11 +35,9 @@ const Sidebar = () => {
   const router = useRouter();
   const { asPath } = router;
 
-  console.log(router);
-
   const userProfile = false;
 
-  const {
+  let {
     sidebar,
     toggleBtn,
     categoryList,
@@ -50,6 +47,11 @@ const Sidebar = () => {
     login,
     loginBtn,
   } = sidebarClasses;
+
+  // Adding border when sidebar is shown on mobile screen
+  sidebar = showSidebar
+    ? sidebar.concat(" border-r-2 border-gray-200")
+    : sidebar;
 
   return (
     <aside className={sidebar}>
@@ -88,7 +90,7 @@ const Sidebar = () => {
               </p>
 
               <div className="pr-4">
-                <GoogleLogin
+                {/* <GoogleLogin
                   clientId=""
                   onSuccess={() => {}}
                   onFailure={() => {}}
@@ -102,7 +104,7 @@ const Sidebar = () => {
                       Log in
                     </button>
                   )}
-                />
+                /> */}
               </div>
             </div>
           )}
