@@ -10,6 +10,10 @@ const nextConfig = {
       "scontent.fcai20-3.fna.fbcdn.net",
     ],
   },
+
+  typescript: {
+    ignoreBuildErrors: true,
+  },
 };
 
 module.exports = nextConfig;

@@ -9,6 +9,7 @@ import { AiFillHome, AiOutlineMenu } from "react-icons/ai";
 import { ImCancelCircle } from "react-icons/im";
 import { useRouter } from "next/router";
 import SidebarFooter from "./SidebarFooter";
+import useAuthStore from "../store/authStore";
 
 const sidebarClasses = {
   sidebar:
@@ -35,7 +36,7 @@ const Sidebar = () => {
   const router = useRouter();
   const { asPath } = router;
 
-  const userProfile = false;
+  const { userProfile } = useAuthStore();
 
   let {
     sidebar,
@@ -90,21 +91,7 @@ const Sidebar = () => {
               </p>
 
               <div className="pr-4">
-                {/* <GoogleLogin
-                  clientId=""
-                  onSuccess={() => {}}
-                  onFailure={() => {}}
-                  cookiePolicy="single_host_origin"
-                  render={(props) => (
-                    <button
-                      className={loginBtn}
-                      onClick={props.onClick}
-                      disabled={props.disabled}
-                    >
-                      Log in
-                    </button>
-                  )}
-                /> */}
+                <button className={loginBtn}>Log in</button>
               </div>
             </div>
           )}

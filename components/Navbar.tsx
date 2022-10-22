@@ -43,7 +43,7 @@ const Navbar = () => {
         </Link>
       </div>
 
-      <div className="search"></div>
+      <div className="search">Search</div>
 
       {/* Navbar links and actions */}
       {userProfile ? (

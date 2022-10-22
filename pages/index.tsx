@@ -3,6 +3,8 @@ import axios from "axios";
 import { Post } from "../types";
 
 import PostCard from "../components/PostCard";
+import { client } from "../utils/client";
+import { BASE_URL } from "../utils";
 
 type HomeProps = {
   posts: Post[];
@@ -28,7 +30,7 @@ const Home = ({ posts }: HomeProps) => {
 };
 
 export const getServerSideProps = async () => {
-  const response = await axios.get(`http://localhost:3000/api/post`);
+  const response = await axios.get(`${BASE_URL}/api/post`);
 
   return { props: { posts: response.data } };
 };
