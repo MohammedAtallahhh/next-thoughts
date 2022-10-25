@@ -3,8 +3,9 @@ import axios from "axios";
 import { Post } from "../types";
 
 import PostCard from "../components/PostCard";
-import { client } from "../utils/client";
 import { BASE_URL } from "../utils";
+import { useEffect } from "react";
+import useAuthStore from "../store/authStore";
 
 type HomeProps = {
   posts: Post[];
@@ -15,6 +16,11 @@ const HomeClasses = {
 };
 
 const Home = ({ posts }: HomeProps) => {
+  // const { fetchAllUsers } = useAuthStore();
+  // useEffect(() => {
+  //   fetchAllUsers();
+  // }, []);
+
   const { postsClass } = HomeClasses;
   return (
     <div className="pr-6">

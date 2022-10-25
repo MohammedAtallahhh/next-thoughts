@@ -15,7 +15,6 @@ import ImageUploader from "../components/ImageUploader";
 import PostForm from "../components/PostForm";
 
 const uploadClasses = {
-  //   uploadSection: "flex justify-center",
   uploadSectionInner:
     " flex flex-col justify-center items-center md:flex-row md:justify-between gap-12 pt-6 rounded-lg w-[80%] max-w-[700px] mx-auto bg-white",
 };
@@ -85,8 +84,7 @@ const Upload = () => {
 
       router.push("/");
     } else {
-      console.log({ caption }, { postImage }, { topic });
-
+      //**** TODO: Implement form validation *********//
       console.log("Some IFON is missing!");
     }
   };

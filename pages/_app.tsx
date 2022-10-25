@@ -26,7 +26,7 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
 
         <div className="flex gap-6 md:gap-20">
           {/* =========== Sidebar ========= */}
-          {asPath !== "/upload" && <Sidebar />}
+          {asPath === "/upload" || (!asPath.includes("/post") && <Sidebar />)}
 
           {/*============= Main Content ============*/}
           <main className="content mt-4 flex flex-col gap-10 overflow-auto h-[88vh] flex-1">

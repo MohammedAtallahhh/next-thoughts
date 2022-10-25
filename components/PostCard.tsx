@@ -14,24 +14,35 @@ type PostCardProps = {
 
 const postCardClasses = {
   post: "flex flex-col border-b-2 border-gray-200 pb-10",
-  header: "flex items-center gap-3 mb-2 rounded cursor-pointer",
-  headerImg: "relative w-10 h-10 rounded md:w-14 md:h-14",
+  header: "flex gap-3 mb-4 rounded",
+  headerImg: "relative w-14 h-14 rounded md:w-18 md:h-18 cursor-pointer",
+  nameContainer: "flex flex-wrap items-center gap-2 cursor-pointer",
   name: "flex items-center gap-2 font-bold text-primary md:text-md",
   username: "font-medium text-xs text-gray-500 capitalize md:",
+  captionClass: "caption font-semibold text-lg ml-4",
   postImg:
-    "rounded-xl p-3 bg-gray-50 border-2 border-gray-200 relative max-w-[600px] h-[400px] lg:h-[500px] xl:h-[500px]",
+    "rounded-xl p-3 bg-gray-50 border-2 border-gray-200 relative max-w-[750px] h-[300px] lg:h-[400px] xl:h-[450px]",
 };
 
 const builder = ImageUrlBuilder(client);
 
 const PostCard = ({ data }: PostCardProps) => {
   const { _id, caption, image, postedBy } = data;
-  const { post, header, headerImg, name, username, postImg } = postCardClasses;
+  const {
+    post,
+    header,
+    headerImg,
+    nameContainer,
+    name,
+    username,
+    captionClass,
+    postImg,
+  } = postCardClasses;
 
   return (
     <div className={post}>
       {/* post header  */}
-      <div className={header}>
+      <header className={header}>
         {/* image */}
         <div className={headerImg}>
           <Link href="/">
@@ -45,11 +56,10 @@ const PostCard = ({ data }: PostCardProps) => {
             {/* </div> */}
           </Link>
         </div>
-
         {/* info */}
-        <div>
+        <div className="flex flex-col gap-4">
           <Link href="/">
-            <div className="flex flex-wrap items-center gap-2">
+            <div className={nameContainer}>
               {/* Name */}
               <p className={name}>
                 {postedBy.userName}
@@ -60,14 +70,15 @@ const PostCard = ({ data }: PostCardProps) => {
               <p className={username}>@{postedBy.userName}</p>
             </div>
           </Link>
+
+          {/* Caption  */}
+          <div className={captionClass}>
+            <h2>{caption}</h2>
+          </div>
         </div>
-      </div>
+      </header>
 
-      <div className="caption my-4 font-semibold text-lg ml-4">
-        <h2>{caption}</h2>
-      </div>
-
-      <div className="postImg">
+      <div>
         <div className={postImg}>
           <Link href={`/post/${_id}`}>
             <div className="relative w-full h-full">
@@ -77,7 +88,8 @@ const PostCard = ({ data }: PostCardProps) => {
                 // width={200}
                 // height={200}
                 layout="fill"
-                className="object-contain cursor-pointer"
+                className="cursor-pointer"
+                objectFit="contain"
               />
             </div>
           </Link>
